@@ -1,0 +1,34 @@
+\section{Dataset and Evaluation-Scope Statistics}
+\label{app:dataset}
+
+\paragraph{Reporting convention.}
+Unless explicitly marked as excluding non-finite features, detection performance in the appendix is reported on all retained executions. Some executions exhibit NaN or $\pm$Inf in their post-injection monitored features, which are trivially flagged; re-scoring after removing these executions serves only as a supplementary conditional diagnostic under the frozen 36D/K=28 configuration: it requires all 36 features of the representation to be finite, and involves no retraining or threshold recalibration; it does not participate in candidate selection.
+
+Each task targets 5{,}000 clean executions and 50{,}000 dual-bit injections. Table~\ref{tab:A1} counts executions with successfully extracted 36D features: 494{,}571 in total, of which 45{,}000 are clean and 449{,}571 injected. Non-SDC, Non-significant SDC, and Significant SDC are defined only among injected executions. After removing executions whose 36D/$K{=}28$ features contain NaN or $\pm$Inf, the Test set retains 72{,}645/74{,}586 executions and 779/2{,}720 Significant-SDC executions. Because this filter removes 1{,}941 Significant-SDC executions, the all-finite subset does not represent the original fault distribution and serves only as a supplementary diagnostic.
+
+\begin{table}[!ht]
+\caption{Valid executions with extractable 36D features, injection labels, and Test-set statistics.}
+\label{tab:A1}
+\centering
+\small
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{%
+\begin{tabular}{llrrrrrrc}
+\toprule
+\textbf{Model} & \textbf{Dataset} & \textbf{Valid} & \textbf{Injected} & \textbf{Non-SDC} & \textbf{Non-sig.} & \textbf{Sig.} & \textbf{Sig. (\%)} & \textbf{Test (all / all-finite)} \\
+\midrule
+Qwen2.5-VL-7B & EarthVQA & 54{,}896 & 49{,}896 & 37{,}087 & 11{,}151 & 1{,}658 & 3.32 & 8{,}236 / 8{,}077 \\
+              & LingoQA  & 54{,}962 & 49{,}962 & 39{,}907 &  8{,}456 & 1{,}599 & 3.20 & 8{,}249 / 8{,}104 \\
+              & VQAv2    & 54{,}949 & 49{,}949 & 41{,}383 &  6{,}873 & 1{,}693 & 3.39 & 8{,}376 / 8{,}211 \\
+\midrule
+InternVL3-8B  & EarthVQA & 54{,}871 & 49{,}871 & 35{,}773 & 11{,}052 & 3{,}046 & 6.11 & 8{,}236 / 7{,}890 \\
+              & LingoQA  & 54{,}955 & 49{,}955 & 38{,}172 &  8{,}570 & 3{,}213 & 6.43 & 8{,}237 / 7{,}891 \\
+              & VQAv2    & 54{,}957 & 49{,}957 & 38{,}323 &  8{,}410 & 3{,}224 & 6.45 & 8{,}375 / 8{,}041 \\
+\midrule
+LLaVA-1.5-7B  & EarthVQA & 54{,}997 & 49{,}997 & 48{,}333 &    494 & 1{,}170 & 2.34 & 8{,}250 / 8{,}113 \\
+              & LingoQA  & 54{,}987 & 49{,}987 & 48{,}061 &    698 & 1{,}228 & 2.46 & 8{,}245 / 8{,}086 \\
+              & VQAv2    & 54{,}997 & 49{,}997 & 48{,}779 &     61 & 1{,}157 & 2.31 & 8{,}382 / 8{,}232 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+

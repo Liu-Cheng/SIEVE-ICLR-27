@@ -1,0 +1,11 @@
+\begin{abstract}
+Although Large Language Models (LLMs) exhibit strong inherent fault tolerance and mask the effects of most GPU soft errors, a small fraction of these errors can still cause severe semantic deviations in their outputs, leaving LLM inference vulnerable to Silent Data Corruption (SDC) with potentially serious consequences for safety-critical applications such as autonomous driving and robotics.
+Detecting these consequential faults is challenging because the magnitude of numerical anomalies alone does not reliably indicate their semantic impact.
+Our key observation is that features in adjacent LLM layers exhibit strong predictability during fault-free execution, while Significant SDCs tend to disrupt this relationship, increasing the discrepancy between a layer's predicted and observed features.
+Building on this observation, we propose SIEVE, a lightweight framework for detecting Significant SDCs through deviations from learned inter-layer predictions.
+SIEVE trains a Nominal Inter-Layer Predictor on clean execution traces to predict the current layer's projected self-attention features from those of the preceding layer.
+At inference time, it extracts statistical and geometric discrepancies between the predicted and observed features of the current layer, aggregates them across monitored layer pairs and decoding steps into a Discrepancy Profile, and uses a lightweight XGBoost classifier to identify Significant SDCs.
+Across three LLMs and three VQA benchmarks, SIEVE achieves 96.38\% precision, 91.49\% recall, and 93.78\% F1 on the primary evaluation set, with a false positive rate of 0.11\%.
+Compared with representative SDC detection baselines, SIEVE improves F1 by 11.38 percentage points while introducing an average end-to-end overhead of 6.65\%.
+\end{abstract}
+

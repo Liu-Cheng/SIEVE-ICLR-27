@@ -1,0 +1,37 @@
+\section{Online Overhead Details}
+\label{app:overhead}
+
+The overhead evaluation uses the final 36D/$K{=}28$ configuration: monitored pairs $(6,7)$, $(24,25)$, and $(26,27)$, over the first $\min(28,T)$ actual decoding steps. Each model--method pair runs 10 warmup and 10 forward repetitions on 50 LingoQA samples, yielding 500 observations; all monitored modes retain 100\% answer agreement.
+
+\begin{table}[!ht]
+\caption{LingoQA online overhead details. Latency in ms, overhead in \%.}
+\label{tab:A8}
+\centering
+\small
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{%
+\begin{tabular}{llrrrr}
+\toprule
+\textbf{Model} & \textbf{Method} & \textbf{Mean} & \textbf{P50} & \textbf{P95} & \textbf{Overhead} \\
+\midrule
+\multirow{4}{*}{Qwen2.5-VL-7B}
+ & No Detection   & 764.4  & 727.0  & 951.3  & 0.00 \\
+ & Ranger   & 777.9  & 738.9  & 971.2  & 1.77 \\
+ & Dr.DNA   & 793.6  & 753.8  & 995.5  & 3.82 \\
+ & SIEVE          & 813.7  & 773.1  & 1025.6 & 6.44 \\
+\midrule
+\multirow{4}{*}{InternVL3-8B}
+ & No Detection   & 984.3  & 932.5  & 1374.9 & 0.00 \\
+ & Ranger   & 1001.8 & 948.9  & 1397.2 & 1.78 \\
+ & Dr.DNA   & 1035.5 & 981.2  & 1446.3 & 5.20 \\
+ & SIEVE          & 1048.7 & 992.7  & 1460.4 & 6.53 \\
+\midrule
+\multirow{4}{*}{LLaVA-1.5-7B}
+ & No Detection   & 363.8  & 249.3  & 640.8  & 0.00 \\
+ & Ranger   & 373.9  & 254.1  & 663.8  & 2.75 \\
+ & Dr.DNA   & 384.5  & 258.4  & 689.5  & 5.67 \\
+ & SIEVE          & 389.2  & 263.2  & 698.5  & 6.98 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+

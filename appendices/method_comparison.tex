@@ -1,0 +1,29 @@
+\section{Configuration-Matched Method Comparison}
+\label{app:method}
+
+Table~\ref{tab:A7} gives per-task Test-set Significant-SDC F1. Neither Ranger nor Dr.DNA provides a public implementation, so Ranger and Dr.DNA are configuration-matched adapted baselines that we re-implemented, not full reproductions of the original systems. The three methods use the same six monitored layers, the first $\min(28,T)$ actual decoding steps, the same fault instances and outer splits, and each selects its threshold on the full Validation set. Clean reference profiles for Ranger/Dr.DNA come from 20\% groups of the outer Training set, capped at 1{,}000 clean samples; SIEVE's Predictor uses the fault-free mapping telemetry of the outer Training set. The comparison therefore controls for monitoring scope, fault instances, and evaluation protocol, but does not claim identical clean-profiling budgets. The first three columns are the primary results covering all retained Test-set scored rows; the last three columns are the supplementary all-finite diagnostic under the same frozen evaluation. All scored rows are matched row-by-row by execution identity, output, and fault metadata.
+
+\begin{table}[!ht]
+\caption{Configuration-matched per-task Significant-SDC F1 (\%).}
+\label{tab:A7}
+\centering
+\small
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Task} & \textbf{Ranger (all)} & \textbf{Dr.DNA (all)} & \textbf{SIEVE (all)} & \textbf{Ranger (all-finite)} & \textbf{Dr.DNA (all-finite)} & \textbf{SIEVE (all-finite)} \\
+\midrule
+Qwen2.5-VL-7B / EarthVQA & 87.87 & 76.15 & 87.50 & 67.03 & 31.82 & 68.57 \\
+Qwen2.5-VL-7B / LingoQA  & 64.91 & 61.33 & 96.10 & 32.81 & 15.79 & 86.67 \\
+Qwen2.5-VL-7B / VQAv2    & 71.12 & 70.51 & 91.48 & 35.69 &  5.63 & 72.85 \\
+InternVL3-8B / EarthVQA  & 90.49 & 86.96 & 98.61 & 69.06 & 40.24 & 94.65 \\
+InternVL3-8B / LingoQA   & 76.13 & 82.17 & 95.40 & 41.51 & 14.55 & 83.33 \\
+InternVL3-8B / VQAv2     & 82.25 & 79.95 & 94.38 & 28.83 & 13.04 & 82.32 \\
+LLaVA-1.5-7B / EarthVQA  & 91.08 & 97.95 & 96.00 & 30.00 & 66.67 & 53.85 \\
+LLaVA-1.5-7B / LingoQA   & 91.91 & 92.22 & 94.68 &  0.00 &  6.90 & 51.28 \\
+LLaVA-1.5-7B / VQAv2     & 95.36 & 94.38 & 89.91 & 34.78 & 10.00 & 25.53 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+

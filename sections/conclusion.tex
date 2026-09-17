@@ -1,0 +1,5 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper studied the semantic impact of soft errors in LLM inference. Numerical anomaly magnitude does not consistently track output severity, so detectors based on activation ranges or distribution shifts misjudge which faults matter. We proposed SIEVE, which models nominal inter-layer feature transitions from clean traces and judges Significant SDCs from the statistical and geometric discrepancy profile of prediction errors, without ground-truth answers or model modification. On three LLMs and three VQA datasets, SIEVE reaches a macro-average F1 of 93.78\% at an FPR of 0.11\% with 6.65\% end-to-end overhead, outperforming configuration-matched Ranger- and Dr.DNA baselines by more than 10 points. Scope limitations and future work are discussed in Appendix~\ref{app:limitations}.
+

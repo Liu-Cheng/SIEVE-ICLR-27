@@ -1,0 +1,57 @@
+\section{Component Ablation Details}
+\label{app:ablation}
+
+Tables~\ref{tab:A5}--\ref{tab:A6} give the per-task F1 (\%) behind Figure~\ref{fig:ablation} in the main text. All variants are retrained, calibrated, and evaluated on the same nested partitions within the outer Training set; the outer Validation and Test sets do not participate. Table~\ref{tab:A5} covers all retained executions and is the primary result for component conclusions; Table~\ref{tab:A6} reports the conditional diagnostic on the fixed 36D/$K{=}28$ all-finite subset. The all-finite filter changes only scored rows; all variants are scored on the same subset, while thresholds remain frozen on the full internal Validation set. \texttt{-P} removes the 12 features of the corresponding layer pair; \texttt{-Cos/-Mean/-Std/-L2} removes the 9 features of that metric across all three pairs.
+
+\begin{table}[!ht]
+\caption{Per-task component ablation, Significant-SDC F1 on all retained executions (\%).}
+\label{tab:A5}
+\centering
+\small
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Task} & \textbf{36D (all)} & \textbf{-P6/7} & \textbf{-P24/25} & \textbf{-P26/27} & \textbf{-Cos} & \textbf{-Mean} & \textbf{-Std} & \textbf{-L2} \\
+\midrule
+InternVL3-8B / EarthVQA & 97.02 & 97.05 & 97.37 & 97.20 & 97.04 & 96.85 & 97.19 & 97.02 \\
+InternVL3-8B / LingoQA  & 98.15 & 98.14 & 98.60 & 98.75 & 91.93 & 98.14 & 98.14 & 98.29 \\
+InternVL3-8B / VQAv2    & 96.70 & 96.70 & 96.12 & 95.45 & 94.86 & 96.27 & 96.27 & 96.27 \\
+LLaVA-1.5-7B / EarthVQA & 96.85 & 95.45 & 96.85 & 96.47 & 95.69 & 96.88 & 96.09 & 96.88 \\
+LLaVA-1.5-7B / LingoQA  & 91.60 & 84.21 & 85.11 & 78.43 & 90.77 & 72.73 & 90.23 & 91.95 \\
+LLaVA-1.5-7B / VQAv2    & 92.70 & 92.24 & 81.06 & 88.52 & 92.24 & 84.71 & 92.70 & 84.71 \\
+Qwen2.5-VL-7B / EarthVQA & 96.66 & 96.05 & 96.66 & 95.78 & 96.95 & 96.66 & 96.95 & 96.95 \\
+Qwen2.5-VL-7B / LingoQA  & 87.58 & 87.93 & 87.58 & 87.42 & 82.66 & 82.90 & 85.55 & 82.32 \\
+Qwen2.5-VL-7B / VQAv2    & 83.54 & 82.53 & 82.04 & 80.50 & 81.07 & 82.04 & 83.54 & 83.79 \\
+\midrule
+\textbf{Macro average} & \textbf{93.42} & \textbf{92.26} & \textbf{91.26} & \textbf{90.95} & \textbf{91.47} & \textbf{89.68} & \textbf{92.96} & \textbf{92.02} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[!ht]
+\caption{Per-task component ablation, Significant-SDC F1 on the all-finite subset (\%).}
+\label{tab:A6}
+\centering
+\small
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Task} & \textbf{36D (all)} & \textbf{-P6/7} & \textbf{-P24/25} & \textbf{-P26/27} & \textbf{-Cos} & \textbf{-Mean} & \textbf{-Std} & \textbf{-L2} \\
+\midrule
+InternVL3-8B / EarthVQA & 88.75 & 89.16 & 90.24 & 89.57 & 89.02 & 88.05 & 89.44 & 88.75 \\
+InternVL3-8B / LingoQA  & 93.62 & 93.48 & 95.03 & 95.56 & 75.86 & 93.48 & 93.41 & 93.99 \\
+InternVL3-8B / VQAv2    & 87.50 & 87.50 & 85.56 & 84.39 & 81.68 & 86.19 & 86.19 & 86.19 \\
+LLaVA-1.5-7B / EarthVQA & 60.00 & 60.00 & 60.00 & 57.14 & 47.62 & 63.64 & 54.55 & 63.64 \\
+LLaVA-1.5-7B / LingoQA  & 45.00 & 28.57 & 30.00 & 21.43 & 36.84 & 16.67 & 40.91 & 46.15 \\
+LLaVA-1.5-7B / VQAv2    & 45.16 & 40.00 & 19.35 & 33.33 & 40.00 & 26.42 & 45.16 & 26.42 \\
+Qwen2.5-VL-7B / EarthVQA & 89.32 & 87.38 & 89.32 & 86.79 & 90.20 & 89.32 & 90.20 & 90.20 \\
+Qwen2.5-VL-7B / LingoQA  & 71.01 & 71.94 & 71.01 & 70.15 & 62.96 & 63.35 & 69.82 & 62.11 \\
+Qwen2.5-VL-7B / VQAv2    & 63.01 & 61.33 & 60.53 & 54.41 & 58.97 & 60.53 & 63.01 & 63.45 \\
+\midrule
+\textbf{Macro average} & \textbf{71.49} & \textbf{68.82} & \textbf{66.78} & \textbf{65.86} & \textbf{64.80} & \textbf{65.29} & \textbf{70.30} & \textbf{68.99} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
